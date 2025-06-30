@@ -13,18 +13,18 @@ A C++ 20 project illustrating two classic recommender-system techniques:
 
 ## Repository Layout
 
-CMakeLists.txt
-Movie.h
-Movie.cpp
-RecommendationSystem.h
-RecommendationSystem.cpp
-RecommendationSystemLoader.h
-RecommendationSystemLoader.cpp
-User.h
-User.cpp
-UsersLoader.h
-UsersLoader.cpp
-testing.cpp  # editable debug/test driver
+CMakeLists.txt  
+Movie.h  
+Movie.cpp  
+RecommendationSystem.h  
+RecommendationSystem.cpp  
+RecommendationSystemLoader.h  
+RecommendationSystemLoader.cpp  
+User.h  
+User.cpp  
+UsersLoader.h  
+UsersLoader.cpp  
+testing.cpp  # editable debug/test driver  
 io/
 
 ---
