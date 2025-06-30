@@ -8,7 +8,7 @@ A C++ 20 project illustrating two classic recommender-system techniques:
 2. **Item-Based Collaborative Filtering (k-NN)**  
    Predicts a score for each unseen movie by weighting the user’s own ratings  
    with cosine similarities between movies.
-   
+
 ---
 
 ## Repository Layout
@@ -26,6 +26,7 @@ UsersLoader.h
 UsersLoader.cpp
 testing.cpp  # editable debug/test driver
 io/
+
 ---
 
 ## Prerequisites
