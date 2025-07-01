@@ -15,8 +15,6 @@
 #include "MlpNetwork.h"
 #include "autotest_utils.h"
 
-#define RUN_CLI            // comment this line to compile the automated-test build
-
 // --- global constants ---
 const int IMG_ROWS = 28;   // MNIST image size
 const int IMG_COLS = 28;
@@ -133,7 +131,6 @@ int test_matrix_read()
 
 int test_rref_simple()
 {
-    // 2×3 example: [[1,2,3],[4,5,6]]  → reduced row-echelon form?
     float arr[] = {1,2,3, 4,5,6};
     float sol[] = {1,0,-1, 0,1,2};
     return test_reduced_matrix(arr, sol, 2, 3);            // 0 on success

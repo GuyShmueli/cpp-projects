@@ -8,45 +8,49 @@
 - Exception-safe RAII (copy-&-swap); minimal STL usage (only `<cmath>` / `<iostream>`)
 
 ## Folder layout
-include/
 ├── Activation.h // activation::relu / activation::softmax    
 ├── Dense.h // Dense layer class    
 ├── Matrix.h // Matrix declaration + error strings/macros    
 ├── MlpNetwork.h // MLP wrapper    
-src/
 ├── Activation.cpp    
 ├── Dense.cpp    
 ├── Matrix.cpp    
 ├── MlpNetwork.cpp    
-tests/
-└── mnist_demo.cpp    
+└── main.cpp    
 
 ## Building
 
 ### Prerequisites
-* C++17-compatible compiler (GCC ≥ 7, Clang ≥ 5, MSVC ≥ 19.14)
-* CMake ≥ 3.10 (optional, recommended)
+* C++17-compatible compiler
+* CMake ≥ 3.10
 
-### Quick one-liner (G++)
+### Usage
 ```bash
-# release build
-g++ -std=c++17 -O2 -Wall -Wextra \
-    src/*.cpp  main.cpp \
-    -o mlp            # CLI build
+# ---- Test-suite executable (RUN_CLI OFF) ----
+# 1. Configure **in a separate build folder** with the switch OFF
+cmake -S . -B build-tests -DRUN_CLI=OFF                    
 
-# test-suite build
-sed -i 's/^#define RUN_CLI/\/\/#define RUN_CLI/' main.cpp
-g++ -std=c++17 -O2 src/*.cpp  main.cpp -o mlp_tests
+# 2. Compile
+cmake --build build-tests -j                              
 
-mkdir -p build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release   # CLI build
-cmake --build . -j
+# 3. Run the self-checks
+cd build-tests
+./mlp_tests                 # plain execution (prints “All tests passed” …)
+ctest --output-on-failure   # same, but through CTest for CI integration
 
-# Tests:
-cmake .. -DRUN_CLI=OFF
-cmake --build . -j
+# ---- CLI executable (RUN_CLI ON, the default) ----
+# 1. Configure a fresh directory (RUN_CLI defaults to ON)
+cmake -S . -B build-cli -DCMAKE_BUILD_TYPE=Release         
 
+# 2. Compile
+cmake --build build-cli -j                                 
+
+# 3. Run the interactive digit-classifier
+cd build-cli
 ./mlp w1.bin w2.bin w3.bin w4.bin b1.bin b2.bin b3.bin b4.bin
-Enter image path (or 'q' to quit):  two_sample_images/3.bin
+# …then follow the prompt:
+#   Enter image path (or 'q' to quit): digit_7.img
 
-Prediction: 3  (p = 0.987)
+
+
+
